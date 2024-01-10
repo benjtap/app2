@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title></title>
+   </head>
+   <body>
+      
+      <div class="container-fluid" style="padding-left: 10px">
+         <h2 id="hdr"></h2>
+         <form id="myForm" class="form-inline form-search" name="myForm">
+            <label>Search for 
+            <input id="in" type="text" ng-model="searchTerm" class="search-query input-medium" />
+            </label> 
+            
+            <button class="btn btn-primary" ng-click="doSearch()"> Search</button>
+           
+         </form>
+         <table id="resultsTbl" class="table table-striped">
+            <thead>
+               <tr>
+                  <th></th>
+               </tr>
+            </thead>
+            <tbody>
+
+              <!-- " -->
+               <tr ng-hide="totalrecords===0"><td>
+                  <table>
+                     <tr><td>
+                        <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                           Previous
+                       </button>
+                     </td>
+                       <td> <span>  {{currentPage+1}}/{{numberOfPages}}</span>
+                     </td>
+                        <td> <button ng-disabled="currentPage >= data.length/pageSize -1" ng-click="currentPage=currentPage+1">
+                           Next
+                       </button></td>
+                     </tr>
+                  </table>
+                  </td>
+               </tr>
+                 
+               <tr>
+                  <td><button  ng-click="showModalfavorites(item)"   class="btn-primary">
+                     Show favorites
+                  </button>
+                  </td>
+               </tr>
+               
+               <tr ng-repeat="item in bookResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                  <td><a ng-href="{{item.volumeInfo.infoLink}}" target="_blank"><img ng-src=
+                     "{{item.volumeInfo.imageLinks.smallThumbnail}}" /></a></td>
+                  <td> <span> {{item.volumeInfo.title}}<br />
+                     By: {{item.volumeInfo.authors | formatFilter}}<br />
+                     Published: {{item.volumeInfo.publisher}}, {{item.volumeInfo.publishedDate |
+                     dateFilter}}<br />
+                  </span>
+                  <span style="font-size: small;font-style: italic;color: #5a0808;" ng-show="isfavorites(item)"> 
+                     Favorite
+                  </span>
+                  </td>
+                  
+                 
+                  <td><button  ng-click="showModaldetails(item)"   class="btn-primary">
+                     Show More
+                 </button></td>
+                 <td><button  ng-click="Add_to_favorites(item)"   class="btn-primary">
+                 Add to favorites
+              </button></td>
+               </tr>
+             
+            </tbody>
+         </table>
+      </div>
+   </body>
+</html>

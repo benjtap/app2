@@ -1,0 +1,29 @@
+<!-- <script type="text/ng-template" id="externaltemplatefavorites.html"> -->
+    <div id="table-wrapper">
+        <div id="table-scroll">
+    <table id="resultsTbl" class="table table-striped">
+        <thead>
+           <tr>
+              <th></th>
+           </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in datafavorites ">
+                <td><a ng-href="{{item.volumeInfo.infoLink}}" target="_blank"><img ng-src=
+                   "{{item.volumeInfo.imageLinks.smallThumbnail}}" /></a></td>
+                <td> <span> {{item.volumeInfo.title}}<br />
+                   By: {{item.volumeInfo.authors | formatFilter}}<br />
+                   Published: {{item.volumeInfo.publisher}}, {{item.volumeInfo.publishedDate |
+                   dateFilter}}<br />
+                </span>
+                
+                </td>
+             </tr>
+           
+          </tbody>
+       </table>
+    </div>
+</div>
+    
+    
+    <!-- </script> -->
